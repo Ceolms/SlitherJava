@@ -14,12 +14,25 @@ import java.awt.Color;
 public class SnakeBodyPart {
     public int x;
     public int y;
+    public int r;
     public Color color;
     
-    SnakeBodyPart(int x , int y, Color color)
+    SnakeBodyPart(int x , int y,int r, Color color)
     {
         this.x = x;
         this.y = y;
+        this.r = r;
         this.color = color;
     }
+    
+    public void setPos(int x , int y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+    public void grow()
+    {
+        
+    }
+            
 }

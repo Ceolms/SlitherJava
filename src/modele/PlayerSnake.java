@@ -8,6 +8,7 @@ import java.awt.Color;
  */
 public class PlayerSnake extends Snake{
     public boolean alive;
+    
    
     
     public PlayerSnake(int x, int y, Color color) {
