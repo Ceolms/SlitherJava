@@ -3,6 +3,8 @@ package modele;
 import java.awt.Color;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import utils.Hitbox;
+import utils.Params;
 
 /**
  *
@@ -13,14 +15,18 @@ public class Food {
     public boolean onScreen = true;
     public int x;
     public int y;
-    public int size = 5;
+    public int size = Params.read("foodSize");
+    public int score;
     public Color color;
-
+    public Hitbox hb;
+    
     public Food() {
-        x = ThreadLocalRandom.current().nextInt(-1000, 1000 + 1);
-        y = ThreadLocalRandom.current().nextInt(-1000, 1000 + 1);
-
+        x = ThreadLocalRandom.current().nextInt(0, Params.read("worldWidth") + 1);
+        y = ThreadLocalRandom.current().nextInt(0, Params.read("worldHeight") + 1);
+        
+        score = size * Params.read("ratioFoodSize");
         int couleur = ThreadLocalRandom.current().nextInt(1, 9);
+        hb = new Hitbox(x, y, size);
 
         switch (couleur) {
             case 1:

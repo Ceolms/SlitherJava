@@ -1,0 +1,17 @@
+speed
+boostSpeed
+rotationSpeed
+bodyPartDist // distance entre charque partie du serpent
+initLength // taille initiale du serpent
+initSize // rayon initial du serpent
+cycle // tick d'horloge
+screenWidth
+screenHeight
+worldWidth
+worldHeight
+minFood
+maxFood
+scoreSection // score a atteindre pour avoir une nouvelle section
+scoreGrow // score a atteindre pour augmenter de rayon
+maxLength// longueur max du serpent
+maxGrow // rayon max du serpent

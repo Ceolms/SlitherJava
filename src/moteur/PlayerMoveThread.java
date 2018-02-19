@@ -11,7 +11,7 @@ import vue.*;
 public class PlayerMoveThread extends Thread {
 
     private double mouseAngle = 0;
-    private double directionAngle = 500; // angle impossible pour l'initialisation
+    private double directionAngle = 500; // impossible angle for init
     private int rotationSpeed;
     private Core c;
 
@@ -44,13 +44,9 @@ public class PlayerMoveThread extends Thread {
         synchronized (screen) {
             xM = screen.mouseX;
             yM = screen.mouseY;
-        }/*
-        xM -= screen.getWidth() / 2;
-        yM -= screen.getHeight() / 2;
-        yM = -yM;*/
+        }
 
         mouseAngle = (180 * Math.atan2(xM - xS, yM - yS) / Math.PI);
-        //System.out.println("Angle = " + mouseAngle);
     }
 
     public void rotateLeft() {
@@ -60,8 +56,6 @@ public class PlayerMoveThread extends Thread {
                 directionAngle = -180;
             }
         }
-        //System.out.println(" LeftR mouseAngle: " + mouseAngle + " directionAngle " + directionAngle);
-
     }
 
     public void rotateRight() {
@@ -71,7 +65,6 @@ public class PlayerMoveThread extends Thread {
                 directionAngle = 180;
             }
         }
-        //System.out.println(" RightR mouseAngle: " + mouseAngle + " directionAngle " + directionAngle);
     }
 
     public void chooseDirection() {
@@ -130,29 +123,23 @@ public class PlayerMoveThread extends Thread {
                 synchronized (player) {
 
                     int speed;
-                    if(player.isBoosting) speed = player.boostSpeed;
-                    else speed = player.speed;
+                    if (player.isBoosting) {
+                        speed = player.boostSpeed;
+                    } else {
+                        speed = player.speed;
+                    }
 
                     dirX = (speed * (float) Math.cos(Math.toRadians(directionAngle - 90)));
                     dirY = (speed * (float) Math.sin(Math.toRadians(directionAngle + 90)));
                     player.head.x += dirX;
                     player.head.y += dirY;
-                    System.out.println("dirX = " + dirX + " dirY = " + dirY);
+                    player.head.updateHitBox();
                     player.updateCoords();
                 }
-                for (Food f : c.foodList) {
-                    synchronized (f) {
-                        f.x -= dirX;
-                        f.y -= dirY;
-                    }
-                }
-
                 sleep(Core.cycle);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
 }

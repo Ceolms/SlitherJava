@@ -1,9 +1,10 @@
 package moteur;
 
 /**
- * Thread qui vérifie les collisions serpent/serpent
+ * Snake/Snake collision
+ *
  * @author theo
  */
-public class HitSnakeThread extends Thread{
-    
+public class HitSnakeThread extends Thread {
+
 }
