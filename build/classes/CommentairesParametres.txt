@@ -1,17 +1,26 @@
-speed
-boostSpeed
-rotationSpeed
-bodyPartDist // distance entre charque partie du serpent
-initLength // taille initiale du serpent
-initSize // rayon initial du serpent
-cycle // tick d'horloge
-screenWidth
-screenHeight
-worldWidth
-worldHeight
-minFood
-maxFood
-scoreSection // score a atteindre pour avoir une nouvelle section
-scoreGrow // score a atteindre pour augmenter de rayon
-maxLength// longueur max du serpent
-maxGrow // rayon max du serpent
+speed : Vitesse normale des serpents
+boostSpeed : vitesse en mode boost
+rotationSpeed : vitesse de rotation des serpents
+bodyPartDist : distance entre les parties du corps
+initLength : longueur initiale
+initSize : rayon inital des parties du corps
+
+cycle : nombre de ms entre chaque tick d'horloge
+screenWidth : largeur de la fenetre de jeu
+screenHeight : hauteur de la fenetre de jeu
+worldWidth : largeur du terrain de jeu
+worldHeight : hauteur du terrain de jeu
+
+minFood : nombre minimum de nourriture (random)
+maxFood : nombre maximum de nourriture (random)
+foodSize : rayon des boules de nourriture
+ratioFoodSize : score = taille nourriture * ratio
+growRatio : rayon du corps += ratio
+scoreSection :  score a atteindre pour gagner une section de corps
+scoreGrow : score a atteindre pour grossir en diamètre
+sizeLimit : longueur max des serpents
+lengthLimit : rayon max des serpents
+
+botDetectionRange : taille de la zone ou les bots agissent si le joueur est proche
+
+

@@ -1,7 +1,6 @@
 package modele;
 
 import java.awt.Color;
-import java.awt.image.BufferedImage;
 import utils.Hitbox;
 
 /**
@@ -10,7 +9,6 @@ import utils.Hitbox;
  */
 public class SnakeHead {
 
-    public int angle;
     public int x;
     public int y;
     public int r;

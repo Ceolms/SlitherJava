@@ -1,0 +1,21 @@
+Classes OK 
+PlayerSnake OK
+Food OK
+Score OK
+Taille / Dézoom OK
+Bots Collisions  OK
+Game Over OK
+
+Fenetre accueil
+Bots Behavior
+Yeux
+Spawn food when death
+Bord de la carte
+Spawn random Food/bots
+Distance parties du corps 
+
+patterns bots:
+
+Manger si en sécurité OK
+Eviter si en danger
+Attaquer si plus fort

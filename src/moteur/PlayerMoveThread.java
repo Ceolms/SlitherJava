@@ -5,7 +5,7 @@ import modele.*;
 import vue.*;
 
 /**
- *
+ * control the player movements
  * @author theo
  */
 public class PlayerMoveThread extends Thread {
@@ -13,7 +13,7 @@ public class PlayerMoveThread extends Thread {
     private double mouseAngle = 0;
     private double directionAngle = 500; // impossible angle for init
     private int rotationSpeed;
-    private Core c;
+    public boolean running = true;
 
     private Screen screen;
 
@@ -22,7 +22,6 @@ public class PlayerMoveThread extends Thread {
     public PlayerMoveThread(Core c) {
         this.player = c.player;
         screen = c.screen;
-        this.c = c;
         try {
             rotationSpeed = Params.read("rotationSpeed");
         } catch (Exception e) {
@@ -31,6 +30,9 @@ public class PlayerMoveThread extends Thread {
 
     }
 
+    /**
+     * calcutate the angle between the mouse and the player's head ( at the center of the screen )
+     */
     public void calculateAngleMouse() {
         double xS;
         double yS;
@@ -75,37 +77,29 @@ public class PlayerMoveThread extends Thread {
             {
                 if (directionAngle > mouseAngle && directionAngle < mouseAngle + 180) {
                     rotateRight();
-                    //System.out.print("NW RIGHT");
                 } else {
                     rotateLeft();
-                    //System.out.print("NW LEFT");
                 }
             } else if (90 <= mouseAngle && mouseAngle <= 180) // NE direction
             {
                 if (directionAngle < mouseAngle && directionAngle > mouseAngle - 180) {
                     rotateLeft();
-                    //System.out.print("NE");
                 } else {
                     rotateRight();
-                    //System.out.print("NE");
                 }
-            } else if (0 <= mouseAngle && mouseAngle <= 90)// SE
+            } else if (0 <= mouseAngle && mouseAngle <= 90)// SE direction
             {
                 if (directionAngle > mouseAngle && directionAngle > mouseAngle - 180) {
                     rotateRight();
-                    //System.out.print("SE");
                 } else {
                     rotateLeft();
-                    //System.out.print("SE");
                 }
-            } else // SW
+            } else // SW direction
             {
                 if (directionAngle > mouseAngle && directionAngle < mouseAngle + 180) {
                     rotateRight();
-                    //System.out.print("SW");
                 } else {
                     rotateLeft();
-                    //System.out.print("SW");
                 }
             }
         }
@@ -114,9 +108,8 @@ public class PlayerMoveThread extends Thread {
     @Override
     public void run() {
         try {
-            while (player.alive) {
+            while (player.alive && running) {
                 calculateAngleMouse();
-
                 chooseDirection();
                 double dirX;
                 double dirY;

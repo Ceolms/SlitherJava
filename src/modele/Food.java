@@ -1,13 +1,12 @@
 package modele;
 
 import java.awt.Color;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import utils.Hitbox;
 import utils.Params;
 
 /**
- *
+ * 
  * @author theo
  */
 public class Food {
@@ -21,9 +20,12 @@ public class Food {
     public Hitbox hb;
     
     public Food() {
+        // position
         x = ThreadLocalRandom.current().nextInt(0, Params.read("worldWidth") + 1);
         y = ThreadLocalRandom.current().nextInt(0, Params.read("worldHeight") + 1);
-        
+        // size is random
+        size = ThreadLocalRandom.current().nextInt(Params.read("minfoodSize") + 1, Params.read("maxfoodSize") + 1);
+        // the bigger is the food , the more it give points
         score = size * Params.read("ratioFoodSize");
         int couleur = ThreadLocalRandom.current().nextInt(1, 9);
         hb = new Hitbox(x, y, size);
@@ -54,5 +56,10 @@ public class Food {
                 color = Color.PINK;
                 break;
         }
+    }
+    
+    public Food(int x , int y) {
+        this.x = x;
+        this.y = y;
     }
 }

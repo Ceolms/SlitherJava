@@ -1,7 +1,7 @@
 package utils;
 
 /**
- *
+ * Couple of x,y int
  * @author theo
  */
 public class Coords {

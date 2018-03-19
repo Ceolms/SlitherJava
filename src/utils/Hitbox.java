@@ -1,15 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package utils;
 
-import static java.lang.Math.sqrt;
-import javafx.scene.shape.Circle;
-
 /**
- *
+ * used to check collisions between circles
  * @author theo
  */
 public class Hitbox {

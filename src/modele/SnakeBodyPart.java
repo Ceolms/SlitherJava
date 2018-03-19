@@ -1,23 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modele;
 
 import java.awt.Color;
 import utils.Hitbox;
 
 /**
- *
+ * 
  * @author theo
  */
 public class SnakeBodyPart {
 
     public int x;
     public int y;
-    public int r;
-    public Hitbox hb;
+    public int r; //radius
+    public Hitbox hb; 
     public Color color;
 
     SnakeBodyPart(int x, int y, int r, Color color) {
@@ -40,7 +35,9 @@ public class SnakeBodyPart {
 
      public void updateHitBox()
     {
-        this.hb = new Hitbox(x, y, r);
+        this.hb.x = x;
+        this.hb.y = y;
+        this.hb.r= r;
     }
     
 }

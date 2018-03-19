@@ -4,10 +4,11 @@ import java.io.FileInputStream;
 import java.util.Properties;
 
 /**
- *
+ * all final variables are located in the same file for easy editing
+ * this class can read the requested variable
  * @author theo
  */
-public class Params { // all final variables are located in the same file for easy editing
+public class Params { 
 
     public static Properties prop = new Properties();
 

@@ -9,6 +9,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 import javax.swing.JPanel;
+import modele.BotSnake;
 import modele.Food;
 import modele.PlayerSnake;
 import modele.SnakeBodyPart;
@@ -26,6 +27,7 @@ public class Screen extends JPanel {
     public PlayerSnake player;
     public int mouseX;
     public int mouseY;
+    ScorePanel scorePanel;
 
     public Screen() {
         this.setBackground(Color.DARK_GRAY);
@@ -71,7 +73,7 @@ public class Screen extends JPanel {
 
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        //g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         double viewSizeX = this.getWidth();
         double viewSizeY = this.getHeight();
@@ -90,6 +92,8 @@ public class Screen extends JPanel {
         }
         g2.translate(-camX, -camY);
 
+        this.scorePanel.repaint();
+        
         // food drawing
         ArrayList<Food> listeF = new ArrayList<Food>();
         // to avoid collision exception
@@ -99,22 +103,43 @@ public class Screen extends JPanel {
             if(f!= null) drawCenteredCircle(g2, f.x, f.y, f.size, f.color);
         }
         
-        //draw player body
-        for (int i = player.body.size() - 1; i >= 0; i--) {
-            drawCenteredCircle(g2, player.body.get(i).x, player.body.get(i).y, player.body.get(i).r, player.body.get(i).color);
+        //bots drawing
+        ArrayList<BotSnake> listeSnake = new ArrayList<BotSnake>();
+        // to avoid collision exception
+        listeSnake.addAll(core.botsList);
+        
+        for (BotSnake b : listeSnake) {
+            if(b!= null)
+            {
+                for (int i = b.body.size() - 1; i >= 0; i--) {
+                drawCenteredCircle(g2, b.body.get(i).x, b.body.get(i).y, b.body.get(i).r, b.body.get(i).color);
+                }
+            drawCenteredCircle(g2, b.head.x, b.head.y, b.size, b.head.color);
+            }
         }
-
-        //draw player head
-        drawCenteredCircle(g2, player.head.x, player.head.y, player.size, player.head.color);
+        
+        // Player drawing
+        //draw player body
+        if(player.alive)
+        {
+             for (int i = player.body.size() - 1; i >= 0; i--) {
+            drawCenteredCircle(g2, player.body.get(i).x, player.body.get(i).y, player.body.get(i).r, player.body.get(i).color);
+            }
+            //draw player head
+            drawCenteredCircle(g2, player.head.x, player.head.y, player.size, player.head.color);
+        }
     }
 
     public void drawCenteredCircle(Graphics2D g, int x, int y, int r, Color c) {
-        int d = r * 2;
+        
+        // reduire r selon player zoom !
+        double rZ = r * player.zoom;
+        double d = rZ * 2;
 
         g.setColor(Color.GRAY);
-        g.fillOval(x - r, y - r, d + 1, d + 1);
+        g.fillOval(x - (int)rZ, y - (int)rZ, (int)d + 1, (int)d + 1);
 
         g.setColor(c);
-        g.fillOval(x - r, y - r, d, d);
+        g.fillOval(x - (int)rZ, y - (int)rZ, (int)d, (int)d);
     }
 }

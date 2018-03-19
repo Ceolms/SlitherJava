@@ -10,6 +10,7 @@ import modele.Food;
 public class OnScreenThread extends Thread {
 
     Core core;
+    public boolean running = true;
 
     public OnScreenThread(Core c) {
         core = c;
@@ -18,7 +19,7 @@ public class OnScreenThread extends Thread {
     @Override
     public void run() {
         try {
-            while (true) {
+            while (running) {
                 for (Food f : core.foodList) {
                     synchronized (f) {
                         if (f.x >= 0 && f.x < core.screen.getWidth() && f.y >= 0 && f.y <= core.screen.getHeight()) {
