@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import modele.BotSnake;
 import modele.Food;
 import modele.SnakeHead;
+import utils.Coords;
 import utils.Params;
 import vue.Screen;
 
@@ -51,10 +52,10 @@ public class BotMoveThread extends Thread {
     }
     
     /**
-     * check is the bot is in danger
+     * check if the bot is in danger
      * */
-    public boolean isFoeNear()
-    { // TODO : a généraliser
+    public Coords isFoeNear()
+    { 
         int range  = Params.read("botDetectionRange");
         SnakeHead playerH = this.c.player.head;
         SnakeHead bot = this.snake.head;
@@ -63,10 +64,24 @@ public class BotMoveThread extends Thread {
         {
            if(bot.y - range < playerH.y && playerH.y < bot.y + range)
             {
-                return true;
+                return new Coords(playerH.x, playerH.y);
             } 
         }
-        return false;
+        
+        for(BotSnake botE : c.botsList)
+        {
+            if (bot != botE.head)
+            {
+                if(bot.x - range < botE.head.x && botE.head.x < bot.x + range)
+                {
+                   if(bot.y - range < botE.head.y && botE.head.y < bot.y + range)
+                    {
+                        return new Coords(botE.head.x, botE.head.y);
+                    } 
+                }
+            }
+        }
+        return new Coords(-1, -1);
     }
    
     public Food getNearestFood()
@@ -97,15 +112,16 @@ public class BotMoveThread extends Thread {
     
     public void chooseBehavior()
     {
-        if(!isFoeNear()) // eat behavior
+        Coords coords = isFoeNear();
+        if(coords.x == -1 && coords.y == -1) // eat behavior
         {
             Food f = getNearestFood();
             targetAngle = (180 * Math.atan2(f.x - snake.head.x, f.y - snake.head.y) / Math.PI);
-            //System.out.println("angle:" + targetAngle);
         }
         else
         {
-            
+            System.out.println("Foe detected");
+            targetAngle = (180 * Math.atan2( snake.head.x - coords.x,snake.head.y - coords.y) / Math.PI);
         }
     }
     //rotate to go to the targetAngle

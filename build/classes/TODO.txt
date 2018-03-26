@@ -5,14 +5,18 @@ Score OK
 Taille / Dézoom OK
 Bots Collisions  OK
 Game Over OK
+Fenetre accueil OK
 
-Fenetre accueil
 Bots Behavior
-Yeux
-Spawn food when death
-Bord de la carte
+pseudo et top scores
 Spawn random Food/bots
+
+Spawn food / death
+Bord de la carte
+Yeux
 Distance parties du corps 
+
+
 
 patterns bots:
 

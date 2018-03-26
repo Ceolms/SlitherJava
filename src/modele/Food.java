@@ -14,7 +14,7 @@ public class Food {
     public boolean onScreen = true;
     public int x;
     public int y;
-    public int size = Params.read("foodSize");
+    public int size;
     public int score;
     public Color color;
     public Hitbox hb;
@@ -24,7 +24,7 @@ public class Food {
         x = ThreadLocalRandom.current().nextInt(0, Params.read("worldWidth") + 1);
         y = ThreadLocalRandom.current().nextInt(0, Params.read("worldHeight") + 1);
         // size is random
-        size = ThreadLocalRandom.current().nextInt(Params.read("minfoodSize") + 1, Params.read("maxfoodSize") + 1);
+        size = ThreadLocalRandom.current().nextInt(Params.read("minFoodSize") + 1, Params.read("maxFoodSize") + 1);
         // the bigger is the food , the more it give points
         score = size * Params.read("ratioFoodSize");
         int couleur = ThreadLocalRandom.current().nextInt(1, 9);
