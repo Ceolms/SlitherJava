@@ -14,6 +14,9 @@ public class PlayerMoveThread extends Thread {
     private double directionAngle = 500; // impossible angle for init
     private int rotationSpeed;
     public boolean running = true;
+    public boolean qPressed;
+    public boolean dPressed;
+    public boolean spacePressed;
 
     private Screen screen;
 
@@ -115,6 +118,10 @@ public class PlayerMoveThread extends Thread {
                 double dirY;
                 synchronized (player) {
 
+                    if(qPressed) System.out.println("q");
+                    if(dPressed) System.out.println("d");
+                    if(spacePressed) System.out.println("espace");
+                    
                     int speed;
                     if (player.isBoosting) {
                         speed = player.boostSpeed;

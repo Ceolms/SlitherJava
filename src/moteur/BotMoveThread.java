@@ -120,7 +120,6 @@ public class BotMoveThread extends Thread {
         }
         else
         {
-            System.out.println("Foe detected");
             targetAngle = (180 * Math.atan2( snake.head.x - coords.x,snake.head.y - coords.y) / Math.PI);
         }
     }

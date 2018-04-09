@@ -1,5 +1,6 @@
 package moteur;
 
+import modele.BotSnake;
 import modele.Food;
 
 /**
@@ -17,7 +18,8 @@ public class OnScreenThread extends Thread {
     }
 
     @Override
-    public void run() {
+    public void run() 
+    {
         try {
             while (running) {
                 for (Food f : core.foodList) {
@@ -26,6 +28,15 @@ public class OnScreenThread extends Thread {
                             f.onScreen = true;
                         } else {
                             f.onScreen = false;
+                        }
+                    }
+                }
+                for (BotSnake bs : core.botsList) {
+                    synchronized (bs) {
+                        if (bs.head.x >= 0 && bs.head.x < core.screen.getWidth() && bs.head.y >= 0 && bs.head.y <= core.screen.getHeight()) {
+                            bs.onScreen = true;
+                        } else {
+                            bs.onScreen = false;
                         }
                     }
                 }

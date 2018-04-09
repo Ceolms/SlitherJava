@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
@@ -21,13 +23,13 @@ import utils.Params;
  *
  * @author theo
  */
-public class Screen extends JPanel {
+public class Screen extends JPanel{
 
     public Core core;
     public PlayerSnake player;
     public int mouseX;
     public int mouseY;
-    ScorePanel scorePanel;
+    public ScorePanel scorePanel;
 
     public Screen() {
         this.setBackground(Color.DARK_GRAY);
@@ -92,7 +94,6 @@ public class Screen extends JPanel {
         }
         g2.translate(-camX, -camY);
 
-        this.scorePanel.repaint();
         
         // food drawing
         ArrayList<Food> listeF = new ArrayList<Food>();
@@ -109,7 +110,7 @@ public class Screen extends JPanel {
         listeSnake.addAll(core.botsList);
         
         for (BotSnake b : listeSnake) {
-            if(b!= null)
+            if(b!= null && b.onScreen)
             {
                 for (int i = b.body.size() - 1; i >= 0; i--) {
                 drawCenteredCircle(g2, b.body.get(i).x, b.body.get(i).y, b.body.get(i).r, b.body.get(i).color);

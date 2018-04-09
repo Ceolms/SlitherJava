@@ -5,21 +5,25 @@ Score OK
 Taille / Dézoom OK
 Bots Collisions  OK
 Game Over OK
+Bots Behavior OK
 Fenetre accueil OK
+Spawn food / death OK
+-------------------------
 
-Bots Behavior
-pseudo et top scores
-Spawn random Food/bots
 
-Spawn food / death
+Déplacement clavier
+Optimiser code
+Commentaires
+Rapport
+
+
+-------------------------
 Bord de la carte
-Yeux
 Distance parties du corps 
-
-
+Yeux
 
 patterns bots:
 
 Manger si en sécurité OK
-Eviter si en danger
+Eviter si en danger OK
 Attaquer si plus fort

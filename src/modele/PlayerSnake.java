@@ -24,7 +24,6 @@ public class PlayerSnake extends Snake {
             this.head.growSize(growSize);
             if(zoom > 0.6f)this.zoom -= 0.05f;
 
-            System.out.println("growing size");
             for(SnakeBodyPart s : body)
             {
                 s.growSize(growSize);

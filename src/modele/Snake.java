@@ -71,6 +71,7 @@ public abstract class Snake {
         {
             s.updateHitBox();
         }
+        
     }
     /**
      * the snake's score increase depending of the food eaten
@@ -85,7 +86,7 @@ public abstract class Snake {
         int scoreGrow = Params.read("scoreGrow");
         
         if(score % scoreGrow ==0) growSize(Params.read("growRatio"));
-        if(score % scoreSection ==0) lengthQueue++;
+        if(score % scoreSection ==0) lengthQueue++;  
     }
     
     /**

@@ -61,5 +61,38 @@ public class Food {
     public Food(int x , int y) {
         this.x = x;
         this.y = y;
+        
+        size = ThreadLocalRandom.current().nextInt(Params.read("minFoodSize") + 1, Params.read("maxFoodSize") + 1);
+        // the bigger is the food , the more it give points
+        score = size * Params.read("ratioFoodSize");
+        int couleur = ThreadLocalRandom.current().nextInt(1, 9);
+        hb = new Hitbox(x, y, size);
+
+        switch (couleur) {
+            case 1:
+                color = Color.RED;
+                break;
+            case 2:
+                color = Color.BLUE;
+                break;
+            case 3:
+                color = Color.GREEN;
+                break;
+            case 4:
+                color = Color.YELLOW;
+                break;
+            case 5:
+                color = Color.ORANGE;
+                break;
+            case 6:
+                color = Color.CYAN;
+                break;
+            case 7:
+                color = Color.MAGENTA;
+                break;
+            case 8:
+                color = Color.PINK;
+                break;
+        }
     }
 }
